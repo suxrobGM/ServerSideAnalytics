@@ -19,12 +19,14 @@ namespace ServerSideAnalytics
 
         internal async Task Run(HttpContext context, Func<Task> next)
         {
+            //This request should be filtered out ?
             if (_exclude?.Any(x => x(context)) ?? false)
             {
                 await next.Invoke();
                 return;
             }
 
+            //Let's build our structure with collected data
             var req = new WebRequest
             {
                 Timestamp = DateTime.Now,
@@ -34,10 +36,15 @@ namespace ServerSideAnalytics
                 UserAgent = context.Request.Headers["User-Agent"],
                 Path = context.Request.Path.Value,
                 IsWebSocket = context.WebSockets.IsWebSocketRequest,
+                
+                //Ask the store to resolve the geo code of gived ip address 
                 CountryCode = await _store.ResolveCountryCodeAsync(context.Connection.RemoteIpAddress)
             };
 
+            //Store the request into the store
             await _store.StoreWebRequestAsync(req);
+
+            //Pass the command to the next task in the pipeline
             await next.Invoke();
         }
 
