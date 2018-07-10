@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Maddalena;
 
 namespace ServerSideAnalytics
 {

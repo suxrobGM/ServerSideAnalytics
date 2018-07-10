@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Maddalena;
 using ServerSideAnalytics;
 using Xunit;
 using WebRequest = ServerSideAnalytics.WebRequest;
