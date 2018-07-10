@@ -14,15 +14,6 @@
           "lib/netcoreapp2.0/AutoMapper.dll": {}
         }
       },
-      "Countries.Standard/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Countries.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Countries.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.Http.Abstractions/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -2161,7 +2152,6 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Countries.Standard": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.1.0"
         },
         "compile": {
@@ -2226,16 +2216,6 @@
         "lib/netstandard2.0/AutoMapper.dll",
         "lib/netstandard2.0/AutoMapper.pdb",
         "lib/netstandard2.0/AutoMapper.xml"
-      ]
-    },
-    "Countries.Standard/1.0.0": {
-      "sha512": "P/0q7XYU0MJok3PxyiRXMuENFyUi/mvhiKMRKfLLoWPVYikLtdgha6bN7qixAuciKTTFhcg3uhQPVHCB+1P4ag==",
-      "type": "package",
-      "path": "countries.standard/1.0.0",
-      "files": [
-        "countries.standard.1.0.0.nupkg.sha512",
-        "countries.standard.nuspec",
-        "lib/netstandard2.0/Countries.dll"
       ]
     },
     "Microsoft.AspNetCore.Http.Abstractions/2.1.0": {

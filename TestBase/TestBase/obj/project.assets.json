@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "Countries.Standard/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Countries.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Countries.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.Http.Abstractions/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -1756,7 +1747,6 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Countries.Standard": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.1.0"
         },
         "compile": {
@@ -1769,16 +1759,6 @@
     }
   },
   "libraries": {
-    "Countries.Standard/1.0.0": {
-      "sha512": "P/0q7XYU0MJok3PxyiRXMuENFyUi/mvhiKMRKfLLoWPVYikLtdgha6bN7qixAuciKTTFhcg3uhQPVHCB+1P4ag==",
-      "type": "package",
-      "path": "countries.standard/1.0.0",
-      "files": [
-        "countries.standard.1.0.0.nupkg.sha512",
-        "countries.standard.nuspec",
-        "lib/netstandard2.0/Countries.dll"
-      ]
-    },
     "Microsoft.AspNetCore.Http.Abstractions/2.1.0": {
       "sha512": "M67hU3/uAmRKXW6Oe/SYKy/r6wEgJecZgmPWDDsulzJCrZJRc/xdZtKrQ1lof40dGeuzIzBjD5jpJXblb8AMjg==",
       "type": "package",
