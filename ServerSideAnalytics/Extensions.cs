@@ -9,11 +9,14 @@ namespace ServerSideAnalytics
         {
             var user = context.User?.Identity?.Name;
 
-            return string.IsNullOrWhiteSpace(user)
+            var identity = string.IsNullOrWhiteSpace(user)
                 ? (context.Request.Cookies.ContainsKey("ai_user")
                     ? context.Request.Cookies["ai_user"]
                     : context.Connection.Id)
                 : user;
+
+            context.Response.Cookies.Append("identity",identity);
+            return identity;
         }
 
         public static FluidAnalyticBuilder UseServerSideAnalytics(this IApplicationBuilder app, IAnalyticStore repository)
