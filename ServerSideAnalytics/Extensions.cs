@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Net;
+using System.Numerics;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace ServerSideAnalytics
 {
     public static class ServerSideExtensions
     {
+        private const string StrFormat = "000000000000000000000000000000000000000";
+
         public static string UserIdentity(this HttpContext context)
         {
             var user = context.User?.Identity?.Name;
@@ -17,6 +22,11 @@ namespace ServerSideAnalytics
 
             context.Response.Cookies.Append("identity",identity);
             return identity;
+        }
+
+        public static string ToFullDecimalString(this IPAddress ip)
+        {
+            return (new BigInteger(ip.MapToIPv6().GetAddressBytes().Reverse().ToArray())).ToString(StrFormat);
         }
 
         public static FluidAnalyticBuilder UseServerSideAnalytics(this IApplicationBuilder app, IAnalyticStore repository)

@@ -14,10 +14,9 @@ namespace TestSqLite
             await TestBase.StoreTests.RunAll(async () =>
             {
                 const string filePath = "test.db";
+                if(File.Exists(filePath)) File.Delete(filePath);
 
-                var db = new SqLiteAnalyticStore(filePath);
-                await db.PurgeRequestAsync();
-                await db.PurgeGeoIpAsync();
+                var db = new SqLiteAnalyticStore($"Data Source = {filePath}");
                 return db;
             });
         }

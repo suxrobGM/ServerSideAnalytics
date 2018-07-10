@@ -1,5 +1,4 @@
 ﻿using System;
-using Maddalena;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 

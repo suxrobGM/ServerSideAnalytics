@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
-using Maddalena;
 using Microsoft.EntityFrameworkCore;
 
 namespace ServerSideAnalytics.SqLite
@@ -129,23 +128,14 @@ namespace ServerSideAnalytics.SqLite
 
         public async Task StoreGeoIpRangeAsync(IPAddress from, IPAddress to, CountryCode countryCode)
         {
-            var bytesFrom = from.GetAddressBytes();
-            var bytesTo = to.GetAddressBytes();
-
-            Array.Resize(ref bytesFrom, 16);
-            Array.Resize(ref bytesTo, 16);
-
             using (var db = GetContext())
             {
                 await db.Database.EnsureCreatedAsync();
 
                 await db.GeoIpRange.AddAsync(new SqLiteGeoIpRange
                 {
-                    FromDown = BitConverter.ToInt64(bytesFrom, 0),
-                    FromUp = BitConverter.ToInt64(bytesFrom, 8),
-
-                    ToDown = BitConverter.ToInt64(bytesTo, 0),
-                    ToUp = BitConverter.ToInt64(bytesTo, 8),
+                    From = from.ToFullDecimalString(),
+                    To = to.ToFullDecimalString(),
                     CountryCode = countryCode
                 });
 
@@ -155,16 +145,12 @@ namespace ServerSideAnalytics.SqLite
 
         public async Task<CountryCode> ResolveCountryCodeAsync(IPAddress address)
         {
-            var bytes = address.GetAddressBytes();
-            Array.Resize(ref bytes, 16);
-
-            var down = BitConverter.ToInt64(bytes, 0);
-            var up = BitConverter.ToInt64(bytes, 8);
+            var addressString = address.ToFullDecimalString();
 
             using (var db = GetContext())
             {
-                var found = await db.GeoIpRange.FirstOrDefaultAsync(x =>
-                    x.FromDown <= down && x.ToDown >= down && x.FromUp <= up && x.ToUp >= up);
+                var found = await db.GeoIpRange.FirstOrDefaultAsync(x => x.From.CompareTo(addressString) <= 0 &&
+                                                                         x.To.CompareTo(addressString) >= 0);
 
                 return found?.CountryCode ?? CountryCode.World;
             }
