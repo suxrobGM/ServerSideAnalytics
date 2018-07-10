@@ -1,6 +1,4 @@
-﻿using Maddalena;
-
-namespace ServerSideAnalytics.SqlServer
+﻿namespace ServerSideAnalytics.SqlServer
 {
     internal class SqlServerGeoIpRange
     {
