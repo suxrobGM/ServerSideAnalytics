@@ -1,0 +1,70 @@
+﻿@model CodeProject.Models.WebStat
+
+@{
+    ViewData["Title"] = "Request associated with "+Model.Identity;
+}
+
+<p>
+    Those are the requests associate with your identity @Model.Identity
+    <br />
+    <a href="/stat">
+        &lt; Go back to the main list of all users
+    </a>
+</p>
+
+<section>
+    <h2>Ip Addresses</h2>
+    <ul>
+        @foreach (var ip in Model.Requests.Select(x => x.RemoteIpAddress).Distinct())
+        {
+            <li>@ip</li>
+        }
+    </ul>
+</section>
+
+<section>
+    <h2>User agents</h2>
+    <ul>
+        @foreach (var user in Model.Requests.Select(x => x.UserAgent).Distinct())
+        {
+            <li>@user</li>
+        }
+    </ul>
+</section>
+
+<section>
+    <h2>Requests</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th> Ip Address </th>
+            <th> Path </th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Requests)
+        {
+            <tr>
+                <td>
+                    @item.Timestamp.RelativeDate()
+                </td>
+                <td>
+                    @item.RemoteIpAddress.ToString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Path)
+                </td>
+                <td>
+                    @if(!string.IsNullOrWhiteSpace(item.Referer))
+                    {
+                        <a href="@item.Referer">&gt; refer</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</section>

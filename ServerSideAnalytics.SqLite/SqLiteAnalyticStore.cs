@@ -17,6 +17,8 @@ namespace ServerSideAnalytics.SqLite
         private string _requestTable = "SSARequest";
         private string _geoIpTable = "SSAGeoIP";
 
+        private bool _firstCall;
+
         static SqLiteAnalyticStore()
         {
             var config = new MapperConfiguration(cfg =>
@@ -31,7 +33,21 @@ namespace ServerSideAnalytics.SqLite
             Mapper = config.CreateMapper();
         }
 
-        private SqLiteContext GetContext() => new SqLiteContext(_connectionString, _requestTable, _geoIpTable);
+        private SqLiteContext GetContext()
+        {
+            var context = new SqLiteContext(_connectionString, _requestTable, _geoIpTable);
+            if (!_firstCall)
+            {
+                context.Database.EnsureCreated();
+                _firstCall = true;
+            }
+            return context;
+        }
+
+        public SqLiteAnalyticStore():this("Data Source = stat.db")
+        {
+
+        }
 
         public SqLiteAnalyticStore(string connectionString)
         {
@@ -158,6 +174,7 @@ namespace ServerSideAnalytics.SqLite
         {
             using (var db = GetContext())
             {
+                await db.Database.EnsureCreatedAsync();
                 db.WebRequest.RemoveRange(db.WebRequest);
                 await db.SaveChangesAsync();
             }
@@ -168,8 +185,20 @@ namespace ServerSideAnalytics.SqLite
         {
             using (var db = GetContext())
             {
+                await db.Database.EnsureCreatedAsync();
                 db.GeoIpRange.RemoveRange(db.GeoIpRange);
                 await db.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IEnumerable<WebRequest>> InTimeRange(DateTime from, DateTime to)
+        {
+            using (var db = GetContext())
+            {
+                return (await db.WebRequest.Where(x => x.Timestamp >= from && x.Timestamp <= to)
+                    .ToListAsync())
+                    .Select(x => Mapper.Map<WebRequest>(x))
+                    .ToList();
             }
         }
     }

@@ -36,6 +36,8 @@ namespace TestApp.Sqlite
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<IAnalyticStore>(_ => GetAnalyticStore());
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -44,6 +46,12 @@ namespace TestApp.Sqlite
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
+
+        private IAnalyticStore GetAnalyticStore()
+        {
+            return new SqLiteAnalyticStore("Data Source = stat.db");
+        }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -65,7 +73,7 @@ namespace TestApp.Sqlite
 
             app.UseAuthentication();
 
-            app.UseServerSideAnalytics(new SqLiteAnalyticStore("Data Source = stat.db"));
+            app.UseServerSideAnalytics(GetAnalyticStore());
 
             app.UseMvc(routes =>
             {

@@ -30,6 +30,6 @@ namespace ServerSideAnalytics.SqLite
 
         public bool IsWebSocket { get; set; }
 
-        public CountryCode Country { get; set; }
+        public CountryCode CountryCode { get; set; }
     }
 }

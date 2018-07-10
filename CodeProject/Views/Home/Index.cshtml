@@ -1,0 +1,212 @@
+﻿@model CodeProject.Models.WebStat
+@using ServerSideAnalytics
+
+@{
+    ViewData["Title"] = "Identity";
+}
+
+<style>
+    section {
+        margin-top: 25px;
+    }
+</style>
+
+<section>
+    <h2>Server side analytics</h2>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                This is a simple demo of my <a href="https://www.nuget.org/packages/ServerSideAnalytics/">nuget package</a>.
+                The system assign automatically an identity to every not registered user based on AspNet Core cookie system and connection id.
+            </p>
+            <p>
+                <a href="/stat/identity/@Context.UserIdentity()" class="btn btn-outline-primary">See the history of your identity</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col-12">
+            <h3>Summary</h3>
+            <table class="table table-striped">
+                <tr>
+                    <td> Requests served</td>
+                    <td> @Model.TotalServed</td>
+                </tr>
+                <tr>
+                    <td> Daily average</td>
+                    <td> @Model.DailyAverage</td>
+                </tr>
+                <tr>
+                    <td> Unique visitors served</td>
+                    <td> @Model.UniqueVisitors</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col-12">
+            <h3>Request served by day</h3>
+
+            <canvas id="canvasByDay"></canvas>
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col-12">
+            <h3>Request served by hour</h3>
+
+            <canvas id="canvasByHour"></canvas>
+
+            @{
+
+                var daily = Model.DailyServed.OrderBy(x => x.Day);
+                var hourly = Model.HourlyServed.OrderBy(x => x.Hour);
+
+                var dayPoints = string.Join(',', daily.Select(x => x.Served.ToString()));
+                var dayLabels = string.Join(',', daily.Select(x => "'" + x.Day.ToString("dd/MM") + "'"));
+
+                var hourPoints = string.Join(',', hourly.Select(x => x.Served.ToString()));
+                var hourLabels = string.Join(',', hourly.Select(x => "'" + x.Hour.ToString() + "'"));
+            }
+
+            <script>
+            function getConfig(labels, points, description)
+            {
+                return {
+                        type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: description,
+                                data: points,
+                                fill: true,
+                                cubicInterpolationMode: 'monotone'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            tooltips: {
+                                mode: 'index'
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true
+                                    }
+                                }],
+                                yAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Value'
+                                    }
+                                }]
+                            }
+                        }
+                    }
+            }
+
+            window.onload = function ()
+            {
+                var ctxDay = document.getElementById('canvasByDay').getContext('2d');
+                window.dayLine = new Chart(ctxDay, getConfig([@Html.Raw(dayLabels)], [@dayPoints], 'Number of request served by day'));
+
+                var ctxHour = document.getElementById('canvasByHour').getContext('2d');
+                window.hourLine = new Chart(ctxHour, getConfig([@Html.Raw(hourLabels)], [@hourPoints], 'Number of request served by hour'));
+            };
+            </script>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col-12">
+            <h3>Request served by country</h3>
+
+            <table class="table table-striped">
+                @foreach (var country in Model.ServedByCountry.OrderByDescending(x => x.Served))
+                {
+                    <tr>
+                        <td> @country.Country </td>
+                        <td> @country.Served</td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col-12">
+            <h3>Request served by url</h3>
+
+            <table class="table table-striped">
+                @foreach (var url in Model.UrlServed.Where(x => x.Served > 3).OrderByDescending(x => x.Served))
+                {
+                    <tr>
+                        <td> @url.Url </td>
+                        <td> @url.Served</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col-12">
+            <h3>Request in last 24 hours</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th> Identity </th>
+                        <th> Ip Address </th>
+                        <th> Path </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Requests)
+                    {
+                        <tr>
+                            <td>
+                                @item.Timestamp
+                            </td>
+                            <td>
+                                <a href="/stat/identity/@item.Identity">@item.Identity</a>
+                            </td>
+                            <td>
+                                @item.RemoteIpAddress.ToString()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Path)
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(item.Referer))
+                                {
+                                    <a href="@item.Referer">&gt; refer</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

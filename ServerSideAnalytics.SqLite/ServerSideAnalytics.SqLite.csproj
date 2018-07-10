@@ -11,16 +11,14 @@
     <PackageProjectUrl>https://matteofabbri.org/read/server-side-analytics</PackageProjectUrl>
     <PackageTags>storage server side analytics web stat visitors visitor gdpr remote ip refer url network path user username identity geo ip</PackageTags>
     <RepositoryUrl>https://github.com/matteofabbri/ServerSideAnalytics</RepositoryUrl>
+    <Version>4.2.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ServerSideAnalytics\ServerSideAnalytics.csproj" />
+    <PackageReference Include="ServerSideAnalytics" Version="4.2.0" />
   </ItemGroup>
 
 </Project>

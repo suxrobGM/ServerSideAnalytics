@@ -26,6 +26,6 @@ namespace ServerSideAnalytics.Mongo
 
         public bool IsWebSocket { get; set; }
 
-        public CountryCode Country { get; set; }
+        public CountryCode CountryCode { get; set; }
     }
 }

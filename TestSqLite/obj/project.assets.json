@@ -2148,7 +2148,7 @@
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "ServerSideAnalytics/2.0.0": {
+      "ServerSideAnalytics/4.3.2": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -2161,14 +2161,14 @@
           "bin/placeholder/ServerSideAnalytics.dll": {}
         }
       },
-      "ServerSideAnalytics.SqLite/1.0.0": {
+      "ServerSideAnalytics.SqLite/4.2.5": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "AutoMapper": "7.0.1",
           "Microsoft.EntityFrameworkCore": "2.1.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "2.1.0",
-          "ServerSideAnalytics": "2.0.0"
+          "ServerSideAnalytics": "4.2.0"
         },
         "compile": {
           "bin/placeholder/ServerSideAnalytics.SqLite.dll": {}
@@ -2183,7 +2183,7 @@
         "dependencies": {
           "Microsoft.NET.Test.Sdk": "15.7.0",
           "Microsoft.NETCore.App": "2.1.0",
-          "ServerSideAnalytics": "2.0.0",
+          "ServerSideAnalytics": "4.3.2",
           "xunit": "2.3.1",
           "xunit.runner.visualstudio": "2.3.1"
         },
@@ -6945,12 +6945,12 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "ServerSideAnalytics/2.0.0": {
+    "ServerSideAnalytics/4.3.2": {
       "type": "project",
       "path": "../ServerSideAnalytics/ServerSideAnalytics.csproj",
       "msbuildProject": "../ServerSideAnalytics/ServerSideAnalytics.csproj"
     },
-    "ServerSideAnalytics.SqLite/1.0.0": {
+    "ServerSideAnalytics.SqLite/4.2.5": {
       "type": "project",
       "path": "../ServerSideAnalytics.SqLite/ServerSideAnalytics.SqLite.csproj",
       "msbuildProject": "../ServerSideAnalytics.SqLite/ServerSideAnalytics.SqLite.csproj"
@@ -6965,8 +6965,8 @@
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.NET.Test.Sdk >= 15.7.0",
       "Microsoft.NETCore.App >= 2.1.0",
-      "ServerSideAnalytics >= 2.0.0",
-      "ServerSideAnalytics.SqLite >= 1.0.0",
+      "ServerSideAnalytics >= 4.3.2",
+      "ServerSideAnalytics.SqLite >= 4.2.5",
       "TestBase >= 1.0.0",
       "xunit >= 2.3.1",
       "xunit.runner.visualstudio >= 2.3.1"

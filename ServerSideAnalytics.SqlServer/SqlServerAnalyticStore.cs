@@ -177,5 +177,16 @@ namespace ServerSideAnalytics.SqlServer
                 await db.SaveChangesAsync();
             }
         }
+
+        public async Task<IEnumerable<WebRequest>> InTimeRange(DateTime from, DateTime to)
+        {
+            using (var db = GetContext())
+            {
+                return (await db.WebRequest.Where(x => x.Timestamp >= from && x.Timestamp <= to)
+                    .ToListAsync())
+                    .Select(x => Mapper.Map<WebRequest>(x))
+                    .ToList();
+            }
+        }
     }
 }

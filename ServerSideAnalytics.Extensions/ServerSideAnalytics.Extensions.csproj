@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Matteo Fabbri</Authors>
+    <Description>Time series methods for ServerSideAnalytics tool for AspNet Core</Description>
+    <Copyright>Matteo Fabbri 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/matteofabbri/ServerSideAnalytics/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://matteofabbri.org/read/server-side-analytics</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/matteofabbri/ServerSideAnalytics</RepositoryUrl>
+    <PackageTags>server side analytics web stat visitors visitor gdpr remote ip refer url network path user username identity geo ip</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.5.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Countries.Standard" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="ServerSideAnalytics" Version="4.2.1" />
+  </ItemGroup>
+
+</Project>

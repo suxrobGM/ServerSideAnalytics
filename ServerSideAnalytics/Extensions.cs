@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace ServerSideAnalytics
 {
-    public static class Extensions
+    public static class ServerSideExtensions
     {
         public static string UserIdentity(this HttpContext context)
         {
