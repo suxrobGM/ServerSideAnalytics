@@ -14,11 +14,15 @@ namespace ServerSideAnalytics
         {
             var user = context.User?.Identity?.Name;
 
-            var identity = string.IsNullOrWhiteSpace(user)
-                ? (context.Request.Cookies.ContainsKey("ai_user")
-                    ? context.Request.Cookies["ai_user"]
-                    : context.Connection.Id)
-                : user;
+            const string identityString = "identity";
+
+            var identity = context.Request.Cookies.ContainsKey(identityString)
+                ? (string.IsNullOrWhiteSpace(user)
+                    ? (context.Request.Cookies.ContainsKey("ai_user")
+                        ? context.Request.Cookies["ai_user"]
+                        : context.Connection.Id)
+                    : user)
+                : context.Request.Cookies[identityString];
 
             context.Response.Cookies.Append("identity",identity);
             return identity;

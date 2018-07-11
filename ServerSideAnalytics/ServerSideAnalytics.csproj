@@ -9,7 +9,7 @@
     <PackageLicenseUrl>https://github.com/matteofabbri/ServerSideAnalytics/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://matteofabbri.org/read/server-side-analytics</PackageProjectUrl>
     <PackageTags>server side analytics web stat visitors visitor gdpr remote ip refer url network path user username identity geo ip</PackageTags>
-    <Version>4.5.2</Version>
+    <Version>4.5.3</Version>
     <RepositoryUrl>https://github.com/matteofabbri/ServerSideAnalytics</RepositoryUrl>
   </PropertyGroup>
 
