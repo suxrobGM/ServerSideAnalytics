@@ -19,10 +19,12 @@ namespace ServerSideAnalytics
 
         internal async Task Run(HttpContext context, Func<Task> next)
         {
+            //Pass the command to the next task in the pipeline
+            await next.Invoke();
+
             //This request should be filtered out ?
             if (_exclude?.Any(x => x(context)) ?? false)
             {
-                await next.Invoke();
                 return;
             }
 
@@ -43,9 +45,6 @@ namespace ServerSideAnalytics
 
             //Store the request into the store
             await _store.StoreWebRequestAsync(req);
-
-            //Pass the command to the next task in the pipeline
-            await next.Invoke();
         }
 
         public FluidAnalyticBuilder Exclude(Func<HttpContext, bool> filter)
