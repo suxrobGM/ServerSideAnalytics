@@ -16,15 +16,25 @@ namespace ServerSideAnalytics
 
             const string identityString = "identity";
 
-            var identity = context.Request.Cookies.ContainsKey(identityString)
-                ? (string.IsNullOrWhiteSpace(user)
-                    ? (context.Request.Cookies.ContainsKey("ai_user")
+            string identity;
+            if (!context.Request.Cookies.ContainsKey(identityString))
+            {
+                if (string.IsNullOrWhiteSpace(user))
+                {
+                    identity = context.Request.Cookies.ContainsKey("ai_user")
                         ? context.Request.Cookies["ai_user"]
-                        : context.Connection.Id)
-                    : user)
-                : context.Request.Cookies[identityString];
-
-            context.Response.Cookies.Append("identity",identity);
+                        : context.Connection.Id;
+                }
+                else
+                {
+                    identity = user;
+                }
+                context.Response.Cookies.Append("identity", identity);
+            }
+            else
+            {
+                identity = context.Request.Cookies[identityString];
+            }
             return identity;
         }
 
