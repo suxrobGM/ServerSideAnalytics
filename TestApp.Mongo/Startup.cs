@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Net;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,7 +36,9 @@ namespace TestApp.Mongo
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseServerSideAnalytics(new MongoAnalyticStore());
+            app.UseServerSideAnalytics(new MongoAnalyticStore()).Exclude
+            HttpStatusCode.
+
 
             app.UseStaticFiles();
 
