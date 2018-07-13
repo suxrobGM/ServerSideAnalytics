@@ -36,11 +36,7 @@ namespace TestApp.Mongo
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseServerSideAnalytics(new MongoAnalyticStore()).Exclude
-            HttpStatusCode.
-
-
-            app.UseStaticFiles();
+            app.UseServerSideAnalytics(new MongoAnalyticStore()).LimitToStatusCodes(HttpStatusCode.OK);
 
             app.UseMvc(routes =>
             {
