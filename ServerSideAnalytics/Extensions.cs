@@ -8,33 +8,30 @@ namespace ServerSideAnalytics
 {
     public static class ServerSideExtensions
     {
+        const string cookieName = "SSA_Identity";
         private const string StrFormat = "000000000000000000000000000000000000000";
 
         public static string UserIdentity(this HttpContext context)
         {
-            var user = context.User?.Identity?.Name;
+            string identity = context.User?.Identity?.Name;
 
-            const string identityString = "identity";
-
-            string identity;
-            if (!context.Request.Cookies.ContainsKey(identityString))
+            if (!context.Request.Cookies.ContainsKey(cookieName))
             {
-                if (string.IsNullOrWhiteSpace(user))
+                if (string.IsNullOrWhiteSpace(identity))
                 {
                     identity = context.Request.Cookies.ContainsKey("ai_user")
-                        ? context.Request.Cookies["ai_user"]
-                        : context.Connection.Id;
+                                ? context.Request.Cookies["ai_user"]
+                                : context.Connection.Id;
                 }
-                else
-                {
-                    identity = user;
-                }
-                context.Response.Cookies.Append("identity", identity);
+
+                if (!context.Response.HasStarted)
+                    context.Response.Cookies.Append("identity", identity);
             }
             else
             {
-                identity = context.Request.Cookies[identityString];
+                identity = context.Request.Cookies[cookieName];
             }
+
             return identity;
         }
 
