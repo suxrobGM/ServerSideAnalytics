@@ -3,7 +3,7 @@ AspNet Core component for server side analytics (SSA)
 
 Live demo running at [https://matteofabbri.org/stat](https://matteofabbri.org/stat)
 
-#How to
+## How to
 The very basic use of analytics is invoking the UseServerSideAnalytics extension in your application startup code
 
 ```csharp
@@ -22,7 +22,7 @@ I'm using Mongo DB to store my data because is my preferred database but you can
 
 [https://www.nuget.org/packages/ServerSideAnalytics.Sqlite](https://www.nuget.org/packages/ServerSideAnalytics.Sqlite)
 
-#Reading from the store
+## Reading from the store
 To show collected data in your app the best practice is to use the dependency injection pattern, like any other AspNet Core service. 
 To do that bind IAnalyticStore into the ConfigureServices system method.
 
@@ -48,7 +48,7 @@ private IAnalyticStore GetAnalyticStore() =>
 	new MongoAnalyticStore("mongodb://192.168.0.11/matteo");
 ```
 
-#Configuring the analytic system
+## Configuring the analytic system
 By default Server Side Analytic keeps trace of every request. 
 But obviously not everyone cares of every request that comes to his web application. 
 By making this system running for a month I found thousand of request from crawlers fecthing robots.txt and honestly I don't care about them. 
@@ -72,7 +72,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-#Configuring analytics for API
+## Configuring analytics for API
 What I shown above is a way to configure analytics for a web site but what if I want to use server side analytics just to measure the usage of my API ? 
 Just exclude anything else by using the fluid method LimitToPath
 
@@ -87,7 +87,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-#Configuring the store
+## Configuring the store
 Every store takes use two default table (or collection on Mongo) to store his data:
 
 SSARequest : to store recieved requests
@@ -104,7 +104,7 @@ private IAnalyticStore GetAnalyticStore() =>
 	     .GeoIpTable("MyGeoIpTable");
 ```
 
-#IP Geocoding
+## IP Geocoding
 The store tries to resolve the country of incoming request by IP geocoding on local database via those methods: 
 StoreGeoIpRangeAsync: which stores an IP range and relative country
 ResolveCountryCodeAsync: which is called by ServerSideAnalytics internals to detect the country of incoming requests

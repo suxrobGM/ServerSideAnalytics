@@ -19,6 +19,8 @@ namespace ServerSideAnalytics
 
         internal async Task Run(HttpContext context, Func<Task> next)
         {
+            var identity = context.UserIdentity();
+
             //Pass the command to the next task in the pipeline
             await next.Invoke();
 
@@ -32,7 +34,7 @@ namespace ServerSideAnalytics
             var req = new WebRequest
             {
                 Timestamp = DateTime.Now,
-                Identity = context.UserIdentity(),
+                Identity = identity,
                 RemoteIpAddress = context.Connection.RemoteIpAddress,
                 Method = context.Request.Method,
                 UserAgent = context.Request.Headers["User-Agent"],
