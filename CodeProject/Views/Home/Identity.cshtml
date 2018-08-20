@@ -4,10 +4,10 @@
     ViewData["Title"] = "Request associated with "+Model.Identity;
 }
 
-<p>
+<p style="margin-top: 52px">
     Those are the requests associate with your identity @Model.Identity
     <br />
-    <a href="/stat">
+    <a href="/">
         &lt; Go back to the main list of all users
     </a>
 </p>
@@ -48,7 +48,7 @@
         {
             <tr>
                 <td>
-                    @item.Timestamp.RelativeDate()
+                    @item.Timestamp
                 </td>
                 <td>
                     @item.RemoteIpAddress.ToString()
