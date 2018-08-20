@@ -12,11 +12,11 @@ namespace CodeProject.Controllers
 {
     public class HomeController : Controller
     {
-        IAnalyticStore analyticStore;
+        private IAnalyticStore _analyticStore;
 
         public HomeController(IAnalyticStore analyticStore)
         {
-            this.analyticStore = analyticStore;
+            _analyticStore = analyticStore;
         }
 
         public async Task<IActionResult> Index()
@@ -26,14 +26,14 @@ namespace CodeProject.Controllers
 
             var stat = new WebStat
             {
-                TotalServed = await analyticStore.CountAsync(from, to),
-                UniqueVisitors = await analyticStore.CountUniqueIndentitiesAsync(from, to),
-                DailyAverage = await analyticStore.DailyAverage(from, to),
-                DailyServed = await analyticStore.DailyServed(from, to),
-                HourlyServed = await analyticStore.HourlyServed(from, to),
-                ServedByCountry = await analyticStore.ServedByCountry(from, to),
-                UrlServed = await analyticStore.UrlServed(from, to),
-                Requests = await analyticStore.InTimeRange(DateTime.Now - TimeSpan.FromDays(1), DateTime.Now)
+                TotalServed = await _analyticStore.CountAsync(from, to),
+                UniqueVisitors = await _analyticStore.CountUniqueIndentitiesAsync(from, to),
+                DailyAverage = await _analyticStore.DailyAverage(from, to),
+                DailyServed = await _analyticStore.DailyServed(from, to),
+                HourlyServed = await _analyticStore.HourlyServed(from, to),
+                ServedByCountry = await _analyticStore.ServedByCountry(from, to),
+                UrlServed = await _analyticStore.UrlServed(from, to),
+                Requests = await _analyticStore.InTimeRange(DateTime.Now - TimeSpan.FromDays(1), DateTime.Now)
             };
             return View(stat);
         }
@@ -43,7 +43,7 @@ namespace CodeProject.Controllers
             return View(new WebStat
             {
                 Identity = id,
-                Requests = (await analyticStore.RequestByIdentityAsync(id)).ToArray(),
+                Requests = (await _analyticStore.RequestByIdentityAsync(id)).ToArray(),
             });
         }
 

@@ -14,7 +14,7 @@ namespace TestBase
         new WebRequest
         {
             RemoteIpAddress = IPAddress.Parse("86.49.47.89"),
-            CountryCode = CountryCode.CZ,
+            CountryCode = CountryCode.Cz,
             Path = "/",
             Identity = "MATTEO",
             IsWebSocket = false,
@@ -28,7 +28,7 @@ namespace TestBase
             new WebRequest
             {
                 RemoteIpAddress = IPAddress.Parse("212.95.74.42"),
-                CountryCode = CountryCode.FR,
+                CountryCode = CountryCode.Fr,
                 Path = "/",
                 Identity = "FRANCO",
                 IsWebSocket = false,
@@ -114,15 +114,15 @@ namespace TestBase
         public static async Task TestGeoResolve(IAnalyticStore store)
         {
             await store.StoreGeoIpRangeAsync(IPAddress.Parse("86.44.0.0"), IPAddress.Parse("86.49.47.255"),
-                CountryCode.CZ);
+                CountryCode.Cz);
 
             await store.StoreGeoIpRangeAsync(IPAddress.Parse("85.44.0.0"), IPAddress.Parse("86.43.255.255"),
-                CountryCode.SK);
+                CountryCode.Sk);
 
             await store.StoreGeoIpRangeAsync(IPAddress.Parse("86.49.48.0"), IPAddress.Parse("86.86.255.255"),
-                CountryCode.IT);
+                CountryCode.It);
 
-            Assert.Equal(CountryCode.CZ, await store.ResolveCountryCodeAsync(IPAddress.Parse("86.49.47.89")));
+            Assert.Equal(CountryCode.Cz, await store.ResolveCountryCodeAsync(IPAddress.Parse("86.49.47.89")));
         }
     }
 }

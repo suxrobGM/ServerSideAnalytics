@@ -8,38 +8,38 @@ using Newtonsoft.Json.Linq;
 
 namespace ServerSideAnalytics.Extensions
 {
-    class IpApiAnalyticStore : IAnalyticStore
+    internal class IpApiAnalyticStore : IAnalyticStore
     {
-        IAnalyticStore store;
+        private readonly IAnalyticStore _store;
 
         public IpApiAnalyticStore(IAnalyticStore store)
         {
-            this.store = store;
+            _store = store;
         }
 
-        public Task<long> CountAsync(DateTime from, DateTime to) => store.CountAsync(from, to);
+        public Task<long> CountAsync(DateTime from, DateTime to) => _store.CountAsync(from, to);
 
-        public Task<long> CountUniqueIndentitiesAsync(DateTime day) => store.CountUniqueIndentitiesAsync(day);
+        public Task<long> CountUniqueIndentitiesAsync(DateTime day) => _store.CountUniqueIndentitiesAsync(day);
 
-        public Task<long> CountUniqueIndentitiesAsync(DateTime from, DateTime to) => store.CountUniqueIndentitiesAsync(from, to);
+        public Task<long> CountUniqueIndentitiesAsync(DateTime from, DateTime to) => _store.CountUniqueIndentitiesAsync(from, to);
 
-        public Task<IEnumerable<WebRequest>> InTimeRange(DateTime from, DateTime to) => store.InTimeRange(from, to);
+        public Task<IEnumerable<WebRequest>> InTimeRange(DateTime from, DateTime to) => _store.InTimeRange(from, to);
 
-        public Task<IEnumerable<IPAddress>> IpAddressesAsync(DateTime day) => store.IpAddressesAsync(day);
+        public Task<IEnumerable<IPAddress>> IpAddressesAsync(DateTime day) => _store.IpAddressesAsync(day);
 
-        public Task<IEnumerable<IPAddress>> IpAddressesAsync(DateTime from, DateTime to) => store.IpAddressesAsync(from,to);
+        public Task<IEnumerable<IPAddress>> IpAddressesAsync(DateTime from, DateTime to) => _store.IpAddressesAsync(from,to);
 
-        public Task PurgeGeoIpAsync() => store.PurgeGeoIpAsync();
+        public Task PurgeGeoIpAsync() => _store.PurgeGeoIpAsync();
 
-        public Task PurgeRequestAsync() => store.PurgeRequestAsync();
+        public Task PurgeRequestAsync() => _store.PurgeRequestAsync();
 
-        public Task<IEnumerable<WebRequest>> RequestByIdentityAsync(string identity) => store.RequestByIdentityAsync(identity);
+        public Task<IEnumerable<WebRequest>> RequestByIdentityAsync(string identity) => _store.RequestByIdentityAsync(identity);
 
         public async Task<CountryCode> ResolveCountryCodeAsync(IPAddress address)
         {
             try
             {
-                var resolved = await store.ResolveCountryCodeAsync(address);
+                var resolved = await _store.ResolveCountryCodeAsync(address);
 
                 if(resolved == CountryCode.World)
                 {
@@ -49,7 +49,7 @@ namespace ServerSideAnalytics.Extensions
                     var obj = JsonConvert.DeserializeObject(response) as JObject;
                     resolved = (CountryCode)Enum.Parse(typeof(CountryCode), obj["country_code"].ToString());
 
-                    await store.StoreGeoIpRangeAsync(address, address, resolved);
+                    await _store.StoreGeoIpRangeAsync(address, address, resolved);
 
                     return resolved;
                 }
@@ -64,12 +64,12 @@ namespace ServerSideAnalytics.Extensions
 
         public Task StoreGeoIpRangeAsync(IPAddress from, IPAddress to, CountryCode countryCode)
         {
-            return store.StoreGeoIpRangeAsync(from, to, countryCode);
+            return _store.StoreGeoIpRangeAsync(from, to, countryCode);
         }
 
         public Task StoreWebRequestAsync(WebRequest request)
         {
-            return store.StoreWebRequestAsync(request);
+            return _store.StoreWebRequestAsync(request);
         }
     }
 }
