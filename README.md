@@ -51,7 +51,7 @@ private IAnalyticStore GetAnalyticStore() =>
 ## Configuring the analytic system
 By default Server Side Analytic keeps trace of every request. 
 But obviously not everyone cares of every request that comes to his web application. 
-By making this system running for a month I found thousand of request from crawlers fecthing robots.txt and honestly I don't care about them. 
+By making this system running for a month I found thousand of request from crawlers fetching robots.txt and honestly I don't care about them. 
 So how to filter request we don't care of ? By fluid extension methods. Here a brief example copy pasted from my website
 
 ```csharp
