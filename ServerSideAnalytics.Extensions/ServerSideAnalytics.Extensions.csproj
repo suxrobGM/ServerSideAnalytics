@@ -10,12 +10,15 @@
     <RepositoryUrl>https://github.com/matteofabbri/ServerSideAnalytics</RepositoryUrl>
     <PackageTags>server side analytics web stat visitors visitor gdpr remote ip refer url network path user username identity geo ip</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.2</Version>
+    <Version>1.6.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="ServerSideAnalytics" Version="4.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServerSideAnalytics\ServerSideAnalytics.csproj" />
   </ItemGroup>
 
 </Project>
