@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CodeProject.Models;
 using ServerSideAnalytics;
 using ServerSideAnalytics.Extensions;
+using WebRequest = ServerSideAnalytics.WebRequest;
 
 namespace CodeProject.Controllers
 {
     public class HomeController : Controller
     {
-        IAnalyticStore analyticStore;
+        private readonly IAnalyticStore _analyticStore;
 
         public HomeController(IAnalyticStore analyticStore)
         {
-            this.analyticStore = analyticStore;
+            _analyticStore = analyticStore;
         }
 
         public async Task<IActionResult> Index()
@@ -24,18 +25,51 @@ namespace CodeProject.Controllers
             var from = DateTime.MinValue;
             var to = DateTime.MaxValue;
 
+            var total = await _analyticStore.CountAsync(from, to);
+
+            if (total == 0)
+            {
+                await LoadDemoData(_analyticStore);
+            }
+
             var stat = new WebStat
             {
-                TotalServed = await analyticStore.CountAsync(from, to),
-                UniqueVisitors = await analyticStore.CountUniqueIndentitiesAsync(from, to),
-                DailyAverage = await analyticStore.DailyAverage(from, to),
-                DailyServed = await analyticStore.DailyServed(from, to),
-                HourlyServed = await analyticStore.HourlyServed(from, to),
-                ServedByCountry = await analyticStore.ServedByCountry(from, to),
-                UrlServed = await analyticStore.UrlServed(from, to),
-                Requests = await analyticStore.InTimeRange(DateTime.Now - TimeSpan.FromDays(1), DateTime.Now)
+                TotalServed = await _analyticStore.CountAsync(from, to),
+                UniqueVisitors = await _analyticStore.CountUniqueIndentitiesAsync(from, to),
+                DailyAverage = await _analyticStore.DailyAverage(from, to),
+                DailyServed = await _analyticStore.DailyServed(from, to),
+                HourlyServed = await _analyticStore.HourlyServed(from, to),
+                ServedByCountry = await _analyticStore.ServedByCountry(from, to),
+                UrlServed = await _analyticStore.UrlServed(from, to),
+                Requests = await _analyticStore.InTimeRange(DateTime.Now - TimeSpan.FromDays(1), DateTime.Now)
             };
+
             return View(stat);
+        }
+
+        private static async Task LoadDemoData(IAnalyticStore analyticStore)
+        {
+            var countries = Enum.GetValues(typeof(CountryCode)).Cast<CountryCode>().ToArray();
+            var methods = new[] {"GET", "POST", "DELETE", "CHICKEN"};
+            var urls = new[] {"/", "/home", "/contact", "/about"};
+            var rand = new Random();
+
+            for (int i = 0; i < 250; i++)
+            {
+                await analyticStore.StoreWebRequestAsync(new WebRequest
+                {
+                    CountryCode = countries[rand.Next(countries.Length-1)],
+                    Identity = Guid.NewGuid().ToString("N"),
+                    IsWebSocket = rand.Next()%2 == 0,
+                    Method = methods[rand.Next(methods.Length-1)],
+                    Path = urls[rand.Next(urls.Length - 1)],
+                    Referer = "",
+                    RemoteIpAddress = IPAddress.Loopback,
+                    Timestamp = DateTime.Now - TimeSpan.FromSeconds(rand.Next(3600*24*12)),
+                    UserAgent = "Demo data"
+                });
+            }
+
         }
 
         public async Task<ActionResult> Identity(string id)
@@ -43,7 +77,7 @@ namespace CodeProject.Controllers
             return View(new WebStat
             {
                 Identity = id,
-                Requests = (await analyticStore.RequestByIdentityAsync(id)).ToArray(),
+                Requests = (await _analyticStore.RequestByIdentityAsync(id)).ToArray(),
             });
         }
 
@@ -60,11 +94,6 @@ namespace CodeProject.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
