@@ -25,8 +25,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSqlServer", "TestSqlSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSideAnalytics.Extensions", "ServerSideAnalytics.Extensions\ServerSideAnalytics.Extensions.csproj", "{6C18AC2E-3A32-440D-8BE3-EF5BE7C8AD8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeProject", "CodeProject\CodeProject.csproj", "{70C7CF26-CD8E-4B19-9053-8BA7A6721F91}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSideAnalytics.Mongo", "ServerSideAnalytics.Mongo\ServerSideAnalytics.Mongo.csproj", "{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}"
 EndProject
 Global
@@ -79,10 +77,6 @@ Global
 		{6C18AC2E-3A32-440D-8BE3-EF5BE7C8AD8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C18AC2E-3A32-440D-8BE3-EF5BE7C8AD8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C18AC2E-3A32-440D-8BE3-EF5BE7C8AD8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70C7CF26-CD8E-4B19-9053-8BA7A6721F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70C7CF26-CD8E-4B19-9053-8BA7A6721F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70C7CF26-CD8E-4B19-9053-8BA7A6721F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70C7CF26-CD8E-4B19-9053-8BA7A6721F91}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
