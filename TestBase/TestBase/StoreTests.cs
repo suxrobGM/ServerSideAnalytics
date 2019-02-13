@@ -71,16 +71,16 @@ namespace TestBase
                 await store.StoreWebRequestAsync(request);
             }
 
-            Assert.Equal(1, await store.CountUniqueIndentitiesAsync(DateTime.Today));
-            Assert.Equal(1, await store.CountUniqueIndentitiesAsync(DateTime.MinValue, DateTime.MaxValue));
+            Assert.Equal(1, await store.CountUniqueIdentitiesAsync(DateTime.Today));
+            Assert.Equal(1, await store.CountUniqueIdentitiesAsync(DateTime.MinValue, DateTime.MaxValue));
 
             foreach (var request in FrancoRequests)
             {
                 await store.StoreWebRequestAsync(request);
             }
 
-            Assert.Equal(2, await store.CountUniqueIndentitiesAsync(DateTime.Today));
-            Assert.Equal(2, await store.CountUniqueIndentitiesAsync(DateTime.MinValue, DateTime.MaxValue));
+            Assert.Equal(2, await store.CountUniqueIdentitiesAsync(DateTime.Today));
+            Assert.Equal(2, await store.CountUniqueIdentitiesAsync(DateTime.MinValue, DateTime.MaxValue));
         }
 
         public static async Task TestIpAddress(IAnalyticStore store)

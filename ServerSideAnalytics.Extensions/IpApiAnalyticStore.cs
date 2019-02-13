@@ -19,9 +19,9 @@ namespace ServerSideAnalytics.Extensions
 
         public Task<long> CountAsync(DateTime from, DateTime to) => _store.CountAsync(from, to);
 
-        public Task<long> CountUniqueIndentitiesAsync(DateTime day) => _store.CountUniqueIndentitiesAsync(day);
+        public Task<long> CountUniqueIdentitiesAsync(DateTime day) => _store.CountUniqueIdentitiesAsync(day);
 
-        public Task<long> CountUniqueIndentitiesAsync(DateTime from, DateTime to) => _store.CountUniqueIndentitiesAsync(from, to);
+        public Task<long> CountUniqueIdentitiesAsync(DateTime from, DateTime to) => _store.CountUniqueIdentitiesAsync(from, to);
 
         public Task<IEnumerable<WebRequest>> InTimeRange(DateTime from, DateTime to) => _store.InTimeRange(from, to);
 

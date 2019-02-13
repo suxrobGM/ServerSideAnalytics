@@ -41,20 +41,28 @@ namespace ServerSideAnalytics.Mongo
             GeoIpCollection("SSAGeoIP");
         }
 
-        public MongoAnalyticStore RequestCollection(string tablename)
+        public MongoAnalyticStore RequestCollection(string tableName)
         {
             var client = new MongoClient(_url);
             _requestCollection = client.GetDatabase(_url.DatabaseName ?? "default")
-                .GetCollection<MongoWebRequest>(tablename);
+                .GetCollection<MongoWebRequest>(tableName);
+
+            var builder = Builders<MongoWebRequest>.IndexKeys;
+
+            _requestCollection.Indexes.CreateOne(new CreateIndexModel<MongoWebRequest>(builder.Ascending(x => x.CountryCode)));
+            _requestCollection.Indexes.CreateOne(new CreateIndexModel<MongoWebRequest>(builder.Ascending(x => x.Identity)));
+            _requestCollection.Indexes.CreateOne(new CreateIndexModel<MongoWebRequest>(builder.Ascending(x => x.Path)));
+            _requestCollection.Indexes.CreateOne(new CreateIndexModel<MongoWebRequest>(builder.Ascending(x => x.RemoteIpAddress)));
+            _requestCollection.Indexes.CreateOne(new CreateIndexModel<MongoWebRequest>(builder.Ascending(x => x.UserAgent)));
 
             return this;
         }
 
-        public MongoAnalyticStore GeoIpCollection(string tablename)
+        public MongoAnalyticStore GeoIpCollection(string tableName)
         {
             var client = new MongoClient(_url);
             _geoIpCollection = client.GetDatabase(_url.DatabaseName ?? "default")
-                .GetCollection<MongoGeoIpRange>(tablename);
+                .GetCollection<MongoGeoIpRange>(tableName);
             return this;
         }
 
@@ -63,17 +71,29 @@ namespace ServerSideAnalytics.Mongo
             return _requestCollection.InsertOneAsync(Mapper.Map<MongoWebRequest>(request));
         }
 
-        public Task<long> CountUniqueIndentitiesAsync(DateTime day)
+        public Task<long> CountUniqueIdentitiesAsync(DateTime day)
         {
             var from = day.Date;
             var to = day + TimeSpan.FromDays(1);
-            return CountUniqueIndentitiesAsync(from, to);
+            return CountUniqueIdentitiesAsync(from, to);
         }
 
-        public async Task<long> CountUniqueIndentitiesAsync(DateTime from, DateTime to)
+        public async Task<long> CountUniqueIdentitiesAsync(DateTime from, DateTime to)
+        {
+            return (await UniqueIdentitiesAsync(from, to)).LongCount();
+        }
+
+        public Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime day)
+        {
+            var from = day.Date;
+            var to = day + TimeSpan.FromDays(1);
+            return UniqueIdentitiesAsync(from, to);
+        }
+
+        public async Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime @from, DateTime to)
         {
             var identities = await _requestCollection.DistinctAsync(x => x.Identity, x => x.Timestamp >= from && x.Timestamp <= to);
-            return identities.ToEnumerable().Count();
+            return identities.ToEnumerable();
         }
 
         public Task<long> CountAsync(DateTime from, DateTime to)

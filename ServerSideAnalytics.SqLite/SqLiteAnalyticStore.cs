@@ -75,14 +75,30 @@ namespace ServerSideAnalytics.SqLite
             }
         }
 
-        public Task<long> CountUniqueIndentitiesAsync(DateTime day)
+        public Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime day)
         {
             var from = day.Date;
             var to = day + TimeSpan.FromDays(1);
-            return CountUniqueIndentitiesAsync(from, to);
+            return UniqueIdentitiesAsync(from, to);
         }
 
-        public async Task<long> CountUniqueIndentitiesAsync(DateTime from, DateTime to)
+        public async Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime @from, DateTime to)
+        {
+            using (var db = GetContext())
+            {
+                return await db.WebRequest.Where(x => x.Timestamp >= from && x.Timestamp <= to).GroupBy(x => x.Identity)
+                    .Select(x => x.Key).ToListAsync();
+            }
+        }
+
+        public Task<long> CountUniqueIdentitiesAsync(DateTime day)
+        {
+            var from = day.Date;
+            var to = day + TimeSpan.FromDays(1);
+            return CountUniqueIdentitiesAsync(from, to);
+        }
+
+        public async Task<long> CountUniqueIdentitiesAsync(DateTime from, DateTime to)
         {
             using (var db = GetContext())
             {

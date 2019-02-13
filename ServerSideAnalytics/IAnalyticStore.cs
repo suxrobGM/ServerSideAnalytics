@@ -15,19 +15,34 @@ namespace ServerSideAnalytics
         Task StoreWebRequestAsync(WebRequest request);
 
         /// <summary>
-        /// Return unique indentities that made at least a request on that day
+        /// Return unique identities that made at least a request on that day
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        Task<long> CountUniqueIndentitiesAsync(DateTime day);
+        Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime day);
 
         /// <summary>
-        /// Return unique indentities that made at least a request inside the gived ime interval
+        /// Return unique identities that made at least a request inside the gived ime interval
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns></returns>
-        Task<long> CountUniqueIndentitiesAsync(DateTime from, DateTime to);
+        Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime from, DateTime to);
+
+        /// <summary>
+        /// Return unique identities that made at least a request on that day
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        Task<long> CountUniqueIdentitiesAsync(DateTime day);
+
+        /// <summary>
+        /// Return unique identities that made at least a request inside the gived ime interval
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        Task<long> CountUniqueIdentitiesAsync(DateTime from, DateTime to);
 
         /// <summary>
         /// Return the raw number of request served in the time interval
