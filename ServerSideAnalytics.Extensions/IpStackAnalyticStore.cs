@@ -21,6 +21,10 @@ namespace ServerSideAnalytics.Extensions
 
         public Task<long> CountAsync(DateTime from, DateTime to) => _store.CountAsync(from, to);
 
+        public Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime @from, DateTime to) => _store.UniqueIdentitiesAsync(from, to);
+
+        public Task<IEnumerable<string>> UniqueIdentitiesAsync(DateTime day) => _store.UniqueIdentitiesAsync(day);
+
         public Task<long> CountUniqueIdentitiesAsync(DateTime day) => _store.CountUniqueIdentitiesAsync(day);
 
         public Task<long> CountUniqueIdentitiesAsync(DateTime from, DateTime to) => _store.CountUniqueIdentitiesAsync(from, to);
@@ -36,6 +40,7 @@ namespace ServerSideAnalytics.Extensions
         public Task PurgeRequestAsync() => _store.PurgeRequestAsync();
 
         public Task<IEnumerable<WebRequest>> RequestByIdentityAsync(string identity) => _store.RequestByIdentityAsync(identity);
+
 
         public async Task<CountryCode> ResolveCountryCodeAsync(IPAddress address)
         {
