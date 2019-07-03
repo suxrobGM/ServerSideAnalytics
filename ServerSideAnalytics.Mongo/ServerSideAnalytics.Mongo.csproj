@@ -12,13 +12,13 @@
     <PackageTags>server side analytics analytic web stat statistic repository ip tracking request requests referer user agent useragent</PackageTags>
     <PackageReleaseNotes>first relase</PackageReleaseNotes>
     <Description>Provide Mongo database store for ServerSideAnalytics</Description>
-    <Version>5.1.2</Version>
+    <Version>5.2.0</Version>
     <AssemblyVersion>5.1.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
   </ItemGroup>
 
   <ItemGroup>
