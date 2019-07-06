@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Matteo Fabbri</Authors>
+    <Description>MaxMind GeoLite geo ip resolver for ServerSideAnalytics</Description>
+    <Copyright>Matteo Fabbri 2019</Copyright>
+    <PackageLicenseUrl>https://github.com/matteofabbri/ServerSideAnalytics/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://matteofabbri.org/read/server-side-analytics</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/matteofabbri/ServerSideAnalytics</RepositoryUrl>
+    <PackageTags>server side analytics geo ip geo resolution web stat visitors visitor gdpr remote ip refer url network path user username identity geo ip</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
