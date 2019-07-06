@@ -18,6 +18,16 @@ namespace TestSqLite
 
                 var db = new SqLiteAnalyticStore($"Data Source = {filePath}");
                 return db;
+            },
+            async () =>
+            {
+                const string filePath = "testGeo.db";
+                if (File.Exists(filePath)) File.Delete(filePath);
+
+
+                var db = new SqliteGeoIpResolver(filePath);
+                await db.PurgeGeoIpAsync();
+                return db;
             });
         }
     }

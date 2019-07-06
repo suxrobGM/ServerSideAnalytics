@@ -53,19 +53,19 @@ namespace ServerSideAnalytics.Extensions
                 : new (string Country, long Served)[0];
         }
 
-        public static IAnalyticStore UseIpInfoFailOver(this IAnalyticStore store)
+        public static IGeoIpResolver UseIpInfoFailOver(this IGeoIpResolver store)
         {
-            return new IpInfoAnalyticStore(store);
+            return new IpInfoGeoResolver(store);
         }
 
-        public static IAnalyticStore UseIpStackFailOver(this IAnalyticStore store, string key)
+        public static IGeoIpResolver UseIpStackFailOver(this IGeoIpResolver store, string key)
         {
-            return new IpStackAnalyticStore(store, key);
+            return new IpStackGeoResolver(store, key);
         }
 
-        public static IAnalyticStore UseIpApiFailOver(this IAnalyticStore store)
+        public static IGeoIpResolver UseIpApiFailOver(this IGeoIpResolver store)
         {
-            return new IpApiAnalyticStore(store);
+            return new IpApiGeoResolver(store);
         }
     }
 }

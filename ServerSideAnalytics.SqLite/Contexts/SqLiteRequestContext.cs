@@ -2,28 +2,23 @@
 
 namespace ServerSideAnalytics.SqLite
 {
-    internal class SqLiteContext : DbContext
+    internal class SqLiteRequestContext : DbContext
     {
         private readonly string _requestTable;
-        private readonly string _geoIpTable;
         private readonly string _connectionString;
 
-        public SqLiteContext(string connectionString, string requestTable, string geoIpTable)
+        public SqLiteRequestContext(string connectionString, string requestTable)
         {
             _connectionString = connectionString;
             _requestTable = requestTable;
-            _geoIpTable = geoIpTable;
         }
 
         public DbSet<SqliteWebRequest> WebRequest { get; set; }
-
-        public DbSet<SqLiteGeoIpRange> GeoIpRange { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<SqliteWebRequest>(b => { b.ToTable(_requestTable); });
-            modelBuilder.Entity<SqLiteGeoIpRange>(b => { b.ToTable(_geoIpTable); });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

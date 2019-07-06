@@ -82,21 +82,6 @@ namespace ServerSideAnalytics
         /// <returns></returns>
         Task<IEnumerable<WebRequest>> RequestByIdentityAsync(string identity);
 
-        /// <summary>
-        /// Add a geocoding ip range.
-        /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="countryCode"></param>
-        /// <returns></returns>
-        Task StoreGeoIpRangeAsync(IPAddress from, IPAddress to, CountryCode countryCode);
-
-        /// <summary>
-        /// Makes the geeo ip resolution of incoming request. Internally invoked by ServerSideAQnalytics
-        /// </summary>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        Task<CountryCode> ResolveCountryCodeAsync(IPAddress address);
 
         /// <summary>
         /// Remove all item in request collection
@@ -104,10 +89,5 @@ namespace ServerSideAnalytics
         /// <returns></returns>
         Task PurgeRequestAsync();
 
-        /// <summary>
-        /// Remove all items in geo ip resolution collection
-        /// </summary>
-        /// <returns></returns>
-        Task PurgeGeoIpAsync();
     }
 }

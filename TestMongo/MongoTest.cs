@@ -14,6 +14,11 @@ namespace TestMongo
             {
                 var db = new MongoAnalyticStore();
                 await db.PurgeRequestAsync();
+                return db;
+            },
+            async ()=> 
+            {
+                var db = new MongoGeoIpResolver();
                 await db.PurgeGeoIpAsync();
                 return db;
             });

@@ -14,7 +14,6 @@ namespace ServerSideAnalytics.Mongo
 
         private readonly MongoUrl _url;
         private IMongoCollection<MongoWebRequest> _requestCollection;
-        private IMongoCollection<MongoGeoIpRange> _geoIpCollection;
 
         static MongoAnalyticStore()
         {
@@ -38,7 +37,6 @@ namespace ServerSideAnalytics.Mongo
         {
             _url = new MongoUrl(connectionString);
             RequestCollection("SSARequest");
-            GeoIpCollection("SSAGeoIP");
         }
 
         public MongoAnalyticStore RequestCollection(string tableName)
@@ -55,14 +53,6 @@ namespace ServerSideAnalytics.Mongo
             _requestCollection.Indexes.CreateOne(new CreateIndexModel<MongoWebRequest>(builder.Ascending(x => x.RemoteIpAddress)));
             _requestCollection.Indexes.CreateOne(new CreateIndexModel<MongoWebRequest>(builder.Ascending(x => x.UserAgent)));
 
-            return this;
-        }
-
-        public MongoAnalyticStore GeoIpCollection(string tableName)
-        {
-            var client = new MongoClient(_url);
-            _geoIpCollection = client.GetDatabase(_url.DatabaseName ?? "default")
-                .GetCollection<MongoGeoIpRange>(tableName);
             return this;
         }
 
@@ -122,30 +112,7 @@ namespace ServerSideAnalytics.Mongo
             return identities.ToEnumerable().Select( x => Mapper.Map<WebRequest>(x));
         }
 
-        public Task StoreGeoIpRangeAsync(IPAddress from, IPAddress to, CountryCode countryCode)
-        {
-            return _geoIpCollection.InsertOneAsync(new MongoGeoIpRange
-            {
-                From = from.ToFullDecimalString(),
-                To = to.ToFullDecimalString(),
-                CountryCode = countryCode
-            });
-        }
-
-        public async Task<CountryCode> ResolveCountryCodeAsync(IPAddress address)
-        {
-            var addressString = address.ToFullDecimalString();
-
-            var filter = Builders<MongoGeoIpRange>.Filter.Lte(x => x.From, addressString)
-                         & Builders<MongoGeoIpRange>.Filter.Gte(x => x.To, addressString);
-
-            var found = await _geoIpCollection.FindAsync(filter);
-            return (await found.FirstOrDefaultAsync())?.CountryCode ?? CountryCode.World;
-        }
-
         public Task PurgeRequestAsync() => _requestCollection.DeleteManyAsync(x => true);
-
-        public Task PurgeGeoIpAsync() => _geoIpCollection.DeleteManyAsync(x => true);
 
         public async Task<IEnumerable<WebRequest>> InTimeRange(DateTime from, DateTime to)
         {

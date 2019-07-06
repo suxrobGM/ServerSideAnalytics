@@ -39,14 +39,14 @@ namespace TestBase
             }).ToArray();
 
 
-        public static async Task RunAll(Func<Task<IAnalyticStore>> getNewStore)
+        public static async Task RunAll(Func<Task<IAnalyticStore>> getNewRequestStore, Func<Task<IGeoIpResolver>> getNewGeoIp)
         {
-            await TestStorage(await getNewStore());
-            await TestCount(await getNewStore());
-            await TestCountIdentities(await getNewStore());
-            await TestIpAddress(await getNewStore());
-            await TestRequestByIdentity(await getNewStore());
-            await TestGeoResolve(await getNewStore());
+            await TestStorage(await getNewRequestStore());
+            await TestCount(await getNewRequestStore());
+            await TestCountIdentities(await getNewRequestStore());
+            await TestIpAddress(await getNewRequestStore());
+            await TestRequestByIdentity(await getNewRequestStore());
+            await GeoResolverTests.TestGeoResolve(await getNewGeoIp());
         }
 
         public static async Task TestStorage(IAnalyticStore store)
@@ -109,20 +109,6 @@ namespace TestBase
 
             Assert.Equal(MatteoRequests.Length, (await store.RequestByIdentityAsync("MATTEO")).Count());
             Assert.Equal(FrancoRequests.Length, (await store.RequestByIdentityAsync("FRANCO")).Count());
-        }
-
-        public static async Task TestGeoResolve(IAnalyticStore store)
-        {
-            await store.StoreGeoIpRangeAsync(IPAddress.Parse("86.44.0.0"), IPAddress.Parse("86.49.47.255"),
-                CountryCode.Cz);
-
-            await store.StoreGeoIpRangeAsync(IPAddress.Parse("85.44.0.0"), IPAddress.Parse("86.43.255.255"),
-                CountryCode.Sk);
-
-            await store.StoreGeoIpRangeAsync(IPAddress.Parse("86.49.48.0"), IPAddress.Parse("86.86.255.255"),
-                CountryCode.It);
-
-            Assert.Equal(CountryCode.Cz, await store.ResolveCountryCodeAsync(IPAddress.Parse("86.49.47.89")));
         }
     }
 }

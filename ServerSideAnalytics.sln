@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSideAnalytics.Extensi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSideAnalytics.Mongo", "ServerSideAnalytics.Mongo\ServerSideAnalytics.Mongo.csproj", "{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSideAnalytics.GeoLite", "ServerSideAnalytics.MaxMind\ServerSideAnalytics.GeoLite.csproj", "{E236BC3D-4BFA-4898-91A1-DCC1A40EA69C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGeoLite", "TestGeoLite\TestGeoLite.csproj", "{472E3F55-EBB8-40AE-8C1F-9134E0062ECD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,14 @@ Global
 		{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6C14FA4-9236-4B5E-B3E4-09138729AE5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E236BC3D-4BFA-4898-91A1-DCC1A40EA69C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E236BC3D-4BFA-4898-91A1-DCC1A40EA69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E236BC3D-4BFA-4898-91A1-DCC1A40EA69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E236BC3D-4BFA-4898-91A1-DCC1A40EA69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{472E3F55-EBB8-40AE-8C1F-9134E0062ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472E3F55-EBB8-40AE-8C1F-9134E0062ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472E3F55-EBB8-40AE-8C1F-9134E0062ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472E3F55-EBB8-40AE-8C1F-9134E0062ECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

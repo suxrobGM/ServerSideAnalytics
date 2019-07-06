@@ -12,7 +12,7 @@
     <PackageTags>server side analytics analytic web stat statistic repository ip tracking request requests referer user agent useragent</PackageTags>
     <PackageReleaseNotes>first relase</PackageReleaseNotes>
     <Description>Provide Mongo database store for ServerSideAnalytics</Description>
-    <Version>5.2.0</Version>
+    <Version>6.0.0</Version>
     <AssemblyVersion>5.1.2.0</AssemblyVersion>
   </PropertyGroup>
 

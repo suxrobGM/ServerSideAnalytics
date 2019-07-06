@@ -10,6 +10,7 @@ namespace ServerSideAnalytics
     public class FluidAnalyticBuilder
     {
         private readonly IAnalyticStore _store;
+        private IGeoIpResolver _geoIp;
         private List<Func<HttpContext, bool>> _exclude;
 
         internal FluidAnalyticBuilder(IAnalyticStore store)
@@ -40,13 +41,22 @@ namespace ServerSideAnalytics
                 UserAgent = context.Request.Headers["User-Agent"],
                 Path = context.Request.Path.Value,
                 IsWebSocket = context.WebSockets.IsWebSocketRequest,
-                
+
                 //Ask the store to resolve the geo code of gived ip address 
-                CountryCode = await _store.ResolveCountryCodeAsync(context.Connection.RemoteIpAddress)
+                CountryCode = _geoIp != null
+                               ? await _geoIp.ResolveCountryCodeAsync(context.Connection.RemoteIpAddress)
+                               : CountryCode.World
+
             };
 
             //Store the request into the store
             await _store.StoreWebRequestAsync(req);
+        }
+
+        public FluidAnalyticBuilder UseGeoIpResolver(IGeoIpResolver geoIp)
+        {
+            _geoIp = geoIp;
+            return this;
         }
 
         public FluidAnalyticBuilder Exclude(Func<HttpContext, bool> filter)

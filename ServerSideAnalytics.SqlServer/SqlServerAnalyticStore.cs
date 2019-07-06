@@ -13,7 +13,7 @@ namespace ServerSideAnalytics.SqlServer
         private static readonly IMapper Mapper;
         private readonly string _connectionString;
         private string _requestTable = "SSARequest";
-        private string _geoIpTable = "SSAGeoIP";
+
 
         static SqlServerAnalyticStore()
         {
@@ -33,9 +33,9 @@ namespace ServerSideAnalytics.SqlServer
             Mapper = config.CreateMapper();
         }
 
-        private SqlServerContext GetContext()
+        private SqlServerRequestContext GetContext()
         {
-            var db = new SqlServerContext(_connectionString, _requestTable, _geoIpTable);
+            var db = new SqlServerRequestContext(_connectionString, _requestTable);
             db.Database.EnsureCreated();
             return db;
         } 
@@ -48,12 +48,6 @@ namespace ServerSideAnalytics.SqlServer
         public SqlServerAnalyticStore RequestTable(string tablename)
         {
             _requestTable = tablename;
-            return this;
-        }
-
-        public SqlServerAnalyticStore GeoIpTable(string tablename)
-        {
-            _geoIpTable = tablename;
             return this;
         }
 
@@ -133,55 +127,12 @@ namespace ServerSideAnalytics.SqlServer
             }
         }
 
-        public async Task StoreGeoIpRangeAsync(IPAddress from, IPAddress to, CountryCode countryCode)
-        {
-            var bytesFrom = from.GetAddressBytes();
-            var bytesTo = to.GetAddressBytes();
-
-            Array.Resize(ref bytesFrom, 16);
-            Array.Resize(ref bytesTo, 16);
-
-            using (var db = GetContext())
-            {
-                await db.GeoIpRange.AddAsync(new SqlServerGeoIpRange
-                {
-                    From = from.ToFullDecimalString(),
-                    To = to.ToFullDecimalString(),
-                    CountryCode = countryCode
-                });
-                await db.SaveChangesAsync();
-            }
-        }
-
-        public async Task<CountryCode> ResolveCountryCodeAsync(IPAddress address)
-        {
-            var addressString = address.ToFullDecimalString();
-
-            using (var db = GetContext())
-            {
-                var found = await db.GeoIpRange.FirstOrDefaultAsync(x => x.From.CompareTo(addressString) <= 0 &&
-                                                                         x.To.CompareTo(addressString) >= 0);
-
-                return found?.CountryCode ?? CountryCode.World;
-            }
-        }
-
         public async Task PurgeRequestAsync()
         {
             using (var db = GetContext())
             {
                 await db.Database.EnsureCreatedAsync();
                 db.WebRequest.RemoveRange(db.WebRequest);
-                await db.SaveChangesAsync();
-            }
-        }
-
-        public async Task PurgeGeoIpAsync()
-        {
-            using (var db = GetContext())
-            {
-                await db.Database.EnsureCreatedAsync();
-                db.GeoIpRange.RemoveRange(db.GeoIpRange);
                 await db.SaveChangesAsync();
             }
         }

@@ -43,3 +43,7 @@
 /CodeProject/bin
 /CodeProject/obj
 /TestApp.Sqlite/stat.db
+/ServerSideAnalytics.MaxMind/bin
+/ServerSideAnalytics.MaxMind/obj
+/TestGeoLite/bin/Debug/netcoreapp2.2
+/TestGeoLite/obj
