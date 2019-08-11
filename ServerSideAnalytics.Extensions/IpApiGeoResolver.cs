@@ -31,7 +31,7 @@ namespace ServerSideAnalytics.Extensions
                     var response = await (new HttpClient()).GetStringAsync($"http://ip-api.com/json/{ipstr}");
 
                     var obj = JsonConvert.DeserializeObject(response) as JObject;
-                    resolved = (CountryCode)Enum.Parse(typeof(CountryCode), obj["country_code"].ToString());
+                    resolved = (CountryCode)Enum.Parse(typeof(CountryCode), obj["countryCode"].ToString());
 
                     await _resolver.StoreGeoIpRangeAsync(address, address, resolved);
 
