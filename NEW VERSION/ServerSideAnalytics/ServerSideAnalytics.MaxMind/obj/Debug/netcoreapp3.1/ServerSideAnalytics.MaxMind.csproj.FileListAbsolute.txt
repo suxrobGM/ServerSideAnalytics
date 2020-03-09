@@ -1,0 +1,6 @@
+C:\Users\k2dkca\Desktop\ServerSideAnalytics\NEW VERSION\ServerSideAnalytics\ServerSideAnalytics.MaxMind\bin\Debug\netcoreapp3.1\ServerSideAnalytics.MaxMind.exe
+C:\Users\k2dkca\Desktop\ServerSideAnalytics\NEW VERSION\ServerSideAnalytics\ServerSideAnalytics.MaxMind\obj\Debug\netcoreapp3.1\ServerSideAnalytics.MaxMind.csprojAssemblyReference.cache
+C:\Users\k2dkca\Desktop\ServerSideAnalytics\NEW VERSION\ServerSideAnalytics\ServerSideAnalytics.MaxMind\obj\Debug\netcoreapp3.1\ServerSideAnalytics.MaxMind.AssemblyInfoInputs.cache
+C:\Users\k2dkca\Desktop\ServerSideAnalytics\NEW VERSION\ServerSideAnalytics\ServerSideAnalytics.MaxMind\obj\Debug\netcoreapp3.1\ServerSideAnalytics.MaxMind.AssemblyInfo.cs
+C:\Users\k2dkca\Desktop\ServerSideAnalytics\NEW VERSION\ServerSideAnalytics\ServerSideAnalytics.MaxMind\bin\Debug\netcoreapp3.1\MaxMind.Db.dll
+C:\Users\k2dkca\Desktop\ServerSideAnalytics\NEW VERSION\ServerSideAnalytics\ServerSideAnalytics.MaxMind\bin\Debug\netcoreapp3.1\ServerSideAnalytics.dll

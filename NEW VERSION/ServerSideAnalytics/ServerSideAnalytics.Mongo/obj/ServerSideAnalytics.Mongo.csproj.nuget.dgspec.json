@@ -1,0 +1,156 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.Mongo\\ServerSideAnalytics.Mongo.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.Mongo\\ServerSideAnalytics.Mongo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.Mongo\\ServerSideAnalytics.Mongo.csproj",
+        "projectName": "ServerSideAnalytics.Mongo",
+        "projectPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.Mongo\\ServerSideAnalytics.Mongo.csproj",
+        "packagesPath": "C:\\Users\\k2dkca\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.Mongo\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\k2dkca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.xenko.com/nuget": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\ServerSideAnalytics.csproj": {
+                "projectPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\ServerSideAnalytics.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\ServerSideAnalytics.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\ServerSideAnalytics.csproj",
+        "projectName": "ServerSideAnalytics",
+        "projectPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\ServerSideAnalytics.csproj",
+        "packagesPath": "C:\\Users\\k2dkca\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\k2dkca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.xenko.com/nuget": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.CodeAnalysis.FxCopAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.9.6, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

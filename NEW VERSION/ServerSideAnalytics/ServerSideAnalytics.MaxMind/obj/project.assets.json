@@ -1,0 +1,185 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MaxMind.Db/2.6.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/MaxMind.Db.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/MaxMind.Db.dll": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "ServerSideAnalytics/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "bin/placeholder/ServerSideAnalytics.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ServerSideAnalytics.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "MaxMind.Db/2.6.1": {
+      "sha512": "EUzyjutg1ZQlsLArDRIF9QGCLu/OlXu6aTTDrOKvfjlj0/OtbW2ImCNRUPp8+tp37H9cxf3DMBWgktb4H7ddwg==",
+      "type": "package",
+      "path": "maxmind.db/2.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/MaxMind.Db.dll",
+        "lib/net45/MaxMind.Db.xml",
+        "lib/netstandard1.4/MaxMind.Db.dll",
+        "lib/netstandard1.4/MaxMind.Db.xml",
+        "lib/netstandard2.0/MaxMind.Db.dll",
+        "lib/netstandard2.0/MaxMind.Db.xml",
+        "lib/netstandard2.1/MaxMind.Db.dll",
+        "lib/netstandard2.1/MaxMind.Db.xml",
+        "maxmind.db.2.6.1.nupkg.sha512",
+        "maxmind.db.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "ServerSideAnalytics/1.0.0": {
+      "type": "project",
+      "path": "../ServerSideAnalytics/ServerSideAnalytics.csproj",
+      "msbuildProject": "../ServerSideAnalytics/ServerSideAnalytics.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "MaxMind.Db >= 2.6.1",
+      "Newtonsoft.Json >= 12.0.3",
+      "ServerSideAnalytics >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\k2dkca\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.MaxMind\\ServerSideAnalytics.MaxMind.csproj",
+      "projectName": "ServerSideAnalytics.MaxMind",
+      "projectPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.MaxMind\\ServerSideAnalytics.MaxMind.csproj",
+      "packagesPath": "C:\\Users\\k2dkca\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics.MaxMind\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\k2dkca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://packages.xenko.com/nuget": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {
+            "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\ServerSideAnalytics.csproj": {
+              "projectPath": "C:\\Users\\k2dkca\\Desktop\\ServerSideAnalytics\\NEW VERSION\\ServerSideAnalytics\\ServerSideAnalytics\\ServerSideAnalytics.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "dependencies": {
+          "MaxMind.Db": {
+            "target": "Package",
+            "version": "[2.6.1, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
