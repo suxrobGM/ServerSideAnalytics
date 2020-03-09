@@ -47,3 +47,4 @@
 /ServerSideAnalytics.MaxMind/obj
 /TestGeoLite/bin/Debug/netcoreapp2.2
 /TestGeoLite/obj
+/TestGeoLite/bin/Debug/netcoreapp3.1
