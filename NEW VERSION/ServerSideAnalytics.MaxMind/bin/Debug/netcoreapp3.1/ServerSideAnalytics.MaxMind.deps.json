@@ -1,0 +1,71 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "ServerSideAnalytics.MaxMind/1.0.0": {
+        "dependencies": {
+          "MaxMind.Db": "2.6.1",
+          "Newtonsoft.Json": "12.0.3",
+          "ServerSideAnalytics": "1.0.0"
+        },
+        "runtime": {
+          "ServerSideAnalytics.MaxMind.dll": {}
+        }
+      },
+      "MaxMind.Db/2.6.1": {
+        "runtime": {
+          "lib/netstandard2.1/MaxMind.Db.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      },
+      "ServerSideAnalytics/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "ServerSideAnalytics.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ServerSideAnalytics.MaxMind/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MaxMind.Db/2.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EUzyjutg1ZQlsLArDRIF9QGCLu/OlXu6aTTDrOKvfjlj0/OtbW2ImCNRUPp8+tp37H9cxf3DMBWgktb4H7ddwg==",
+      "path": "maxmind.db/2.6.1",
+      "hashPath": "maxmind.db.2.6.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    },
+    "ServerSideAnalytics/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
